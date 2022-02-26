@@ -7,8 +7,6 @@ function runSpeechRecognation() {
     var recognation = new SpeechRecognation();
     recognation.lang = "tr-TR";
     recognation.continuous = false;
-    recognation.interimResults = false;
-    recognation.maxAlternatives = 10;
 
     recognation.onstart = function () {
         action.textContent = "Dinleniyor...";
@@ -21,11 +19,31 @@ function runSpeechRecognation() {
 
     recognation.onerror = function () {
         alert("Mikrofon kullanımına izin verin.");
+           action.textContent = "Hata Oluştu.";
     }
 
     recognation.onresult = function (event) {
-        var transcript = event.results[0][0].transcript;  
-        output.textContent = transcript;
+       const current = event.resultIndex;
+       let transcript = event.results[current][0].transcript;
+        let mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
+        
+        if(!mobileRepeatBug){
+            if(transcript === "next" || transcript ===" next"){
+                this.incrementStep();
+                e.results={};
+            }
+            
+            if(transcript ==="back" || transcript ===" back"){
+                    this.decrementStep();
+                    e.results = {};
+            }
+        }
+        
+        setTimeout(() => {
+            recognation.start();
+        });
+        /*var transcript = event.results[0][0].transcript;  
+        output.textContent = transcript;*/
     };
 
     recognation.start();
