@@ -1,4 +1,3 @@
-
 function runSpeechRecognation() {
     var output = document.getElementById("output");
     var action = document.getElementById("action");
@@ -19,21 +18,12 @@ function runSpeechRecognation() {
 
     recognation.onerror = function () {
         alert("Mikrofon kullanımına izin verin.");
-           action.textContent = "Hata Oluştu.";
+        action.textContent = "Hata Oluştu.";
     }
 
     recognation.onresult = function (event) {
-       let transcript = event.results[0][0].transcript;
+        let transcript = event.results[0][0].transcript;
         output.textContent = transcript;
-        if(!event.KeyCode=="q"){
-            setTimeout(() => {
-            recognation.start();
-        });
-        }
-        /*var transcript = event.results[0][0].transcript;  
-        output.textContent = transcript;*/
-    };
-
+    }
     recognation.start();
 }
-
