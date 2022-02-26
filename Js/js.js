@@ -37,6 +37,8 @@ function runSpeechRecognation() {
                     this.decrementStep();
                     e.results = {};
             }
+            
+            output.textContent = transcript;
         }
         
         setTimeout(() => {
