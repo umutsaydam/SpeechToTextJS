@@ -6,7 +6,7 @@ function runSpeechRecognation() {
     var SpeechRecognation = SpeechRecognation || webkitSpeechRecognition;
     var recognation = new SpeechRecognation();
     recognation.lang = "tr-TR";
-    recognation.continuous = false;
+    recognation.continuous = true;
     recognation.interimResults = false;
     recognation.maxAlternatives = 10;
 
