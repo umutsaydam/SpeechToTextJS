@@ -40,10 +40,12 @@ function runSpeechRecognation() {
             
             output.textContent = transcript;
         }
-        
-        setTimeout(() => {
+        output.textContent = transcript;
+        if(!event.KeyCode=="q"){
+            setTimeout(() => {
             recognation.start();
         });
+        }
         /*var transcript = event.results[0][0].transcript;  
         output.textContent = transcript;*/
     };
