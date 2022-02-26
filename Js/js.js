@@ -23,23 +23,7 @@ function runSpeechRecognation() {
     }
 
     recognation.onresult = function (event) {
-       const current = event.resultIndex;
-       let transcript = event.results[current][0].transcript;
-        let mobileRepeatBug = (current == 1 && transcript == event.results[0][0].transcript);
-        
-        if(!mobileRepeatBug){
-            if(transcript === "next" || transcript ===" next"){
-                this.incrementStep();
-                e.results={};
-            }
-            
-            if(transcript ==="back" || transcript ===" back"){
-                    this.decrementStep();
-                    e.results = {};
-            }
-            
-            output.textContent = transcript;
-        }
+       let transcript = event.results[0][0].transcript;
         output.textContent = transcript;
         if(!event.KeyCode=="q"){
             setTimeout(() => {
