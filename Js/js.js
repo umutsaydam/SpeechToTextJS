@@ -6,7 +6,7 @@ function runSpeechRecognation() {
     var SpeechRecognation = SpeechRecognation || webkitSpeechRecognition;
     var recognation = new SpeechRecognation();
     recognation.lang = "tr-TR";
-    recognation.continuous = true;
+    recognation.continuous = false;
     recognation.interimResults = false;
     recognation.maxAlternatives = 10;
 
@@ -24,9 +24,7 @@ function runSpeechRecognation() {
     }
 
     recognation.onresult = function (event) {
-        var transcript = event.results[0][0].transcript;
-        sonuc += event.results[0][0].transcript + " ";
-        console.log(sonuc);
+        var transcript = event.results[0][0].transcript;  
         output.textContent = transcript;
     };
 
